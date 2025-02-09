@@ -1,0 +1,44 @@
+    /* ----------------------------------------------------------
+    :: Template Name: Studio - Creative Photography Template
+    :: Author: Colorlib
+    :: Author URL: https://colorlib.com
+    :: Version: 1.0.0
+    :: Created: 31 January 2018
+    :: Last Updated: 31 January 2018
+    ---------------------------------------------------------- */
+
+    /* ============ PLACE YOUR CUSTOM CSS HERE ============ */
+
+    .portfolio-submenu .btn {
+        background: none;
+        /* Enlève le fond gris */
+        margin: 0 10px;
+        /* Espace les boutons avec une marge de 10px de chaque côté */
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        .portfolio-submenu .btn {
+            font-size: 14px;
+        }
+    }
+    
+    /* Règle de média pour les écrans mobiles */
+    @media screen and (max-width: 767px) {
+        .portfolio-submenu .btn {
+            font-size: 12px;
+        }
+        .blog-title {
+            font-size: 17px;
+        }
+        .blog-p {
+            font-size:small;
+        }
+        .blog-quote {
+            font-size: 13px;
+        }
+        .blog_item {
+            padding: 0 15px; /* Un peu de padding sur les petits écrans */
+        }
+        
+        
+    }
