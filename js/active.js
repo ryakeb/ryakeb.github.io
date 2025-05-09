@@ -127,12 +127,6 @@ if ($.fn.imagesLoaded) {
         // filter items on button click
         $('.portfolio-menu, .portfolio-submenu').on('click', 'button', function () {
             var filterValue = $(this).attr('data-filter');
-            if(filterValue == ".services") {
-                filterValue = ".weddings, .families, .mumtobe, .portraits";
-            }
-            if(filterValue == ".themes") {
-                filterValue = ".go, .espace, .teardrop"; // replace with your actual theme classes
-            }
             $grid.isotope({
                 filter: filterValue
             });
