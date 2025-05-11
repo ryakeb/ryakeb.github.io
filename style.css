@@ -42,3 +42,15 @@
         
         
     }
+
+/* Ajoute un zoom subtil au hover sur les images de galerie */
+.column_single_gallery_item {
+    position: relative;
+    overflow: hidden;
+}
+.column_single_gallery_item img {
+    transition: transform 0.3s ease;
+}
+.column_single_gallery_item:hover img {
+    transform: scale(1.05);
+}

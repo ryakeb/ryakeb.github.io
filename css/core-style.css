@@ -867,6 +867,7 @@ img {
 
 .column_single_gallery_item img {
     width: 100%;
+    object-fit: cover;
 }
 
 .hover_overlay {
