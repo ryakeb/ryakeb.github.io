@@ -1,56 +1,19 @@
-    /* ----------------------------------------------------------
-    :: Template Name: Studio - Creative Photography Template
-    :: Author: Colorlib
-    :: Author URL: https://colorlib.com
-    :: Version: 1.0.0
-    :: Created: 31 January 2018
-    :: Last Updated: 31 January 2018
-    ---------------------------------------------------------- */
-
-    /* ============ PLACE YOUR CUSTOM CSS HERE ============ */
-
-    .portfolio-submenu .btn {
-        background: none;
-        /* Enlève le fond gris */
-        margin: 0 10px;
-        /* Espace les boutons avec une marge de 10px de chaque côté */
+    /* Correction pour affichage de la citation sur le carousel */
+    .welcome-area {
+        position: relative;
     }
-
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-        .portfolio-submenu .btn {
-            font-size: 14px;
-        }
+    .carousel-quote {
+        position: absolute;
+        bottom: 100px;
+        width: 100%;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        z-index: 1000;
     }
-    
-    /* Règle de média pour les écrans mobiles */
-    @media screen and (max-width: 767px) {
-        .portfolio-submenu .btn {
-            font-size: 12px;
-        }
-        .blog-title {
-            font-size: 17px;
-        }
-        .blog-p {
-            font-size:small;
-        }
-        .blog-quote {
-            font-size: 13px;
-        }
-        .blog_item {
-            padding: 0 15px; /* Un peu de padding sur les petits écrans */
-        }
-        
-        
+    .carousel-quote blockquote {
+        margin: 0;
+        color: #fff;
+        font-size: 1.2rem;
+        font-style: italic;
     }
-
-/* Ajoute un zoom subtil au hover sur les images de galerie */
-.column_single_gallery_item {
-    position: relative;
-    overflow: hidden;
-}
-.column_single_gallery_item img {
-    transition: transform 0.3s ease;
-}
-.column_single_gallery_item:hover img {
-    transform: scale(1.05);
-}
