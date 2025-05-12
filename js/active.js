@@ -124,6 +124,14 @@ $('.portfolio-menu button.btn').on('click', function () {
 // Masonary Gallery Active Code
 if ($.fn.imagesLoaded) {
     $('.portfolio-column').imagesLoaded(function () {
+        // Set default filter to first category
+        var defaultFilter = $('.portfolio-menu button.btn').first().attr('data-filter');
+        // Set active class on first menu button
+        $('.portfolio-menu button.btn').removeClass('active');
+        $('.portfolio-menu button.btn').first().addClass('active');
+        // Show only the first submenu
+        var firstSubfilter = $('.portfolio-menu button.btn').first().data('filter').substring(1);
+        $('.portfolio-submenu').hide().filter('.' + firstSubfilter).show();
         // filter items on button click
         $('.portfolio-menu, .portfolio-submenu').on('click', 'button', function () {
             var filterValue = $(this).attr('data-filter');
@@ -135,6 +143,7 @@ if ($.fn.imagesLoaded) {
         var $grid = $('.portfolio-column').isotope({
             itemSelector: '.column_single_gallery_item',
             percentPosition: true,
+            filter: defaultFilter,
             masonry: {
                 columnWidth: '.column_single_gallery_item'
             }
