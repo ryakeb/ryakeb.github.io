@@ -16,4 +16,25 @@
         color: #fff;
         font-size: 1.2rem;
         font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .gallery-title {
+        position: absolute;
+        top: 0;               /* moved to top of the image */
+        left: 0;
+        width: 100%;
+        text-align: center;   /* center the text */
+        padding: 4px 8px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 0.8rem;    /* smaller font */
+        line-height: 1.2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none; /* click-through */
+    }
+    /* Show the title when hovering the gallery item */
+    .column_single_gallery_item:hover .gallery-title,
+    .gallery_img:hover .gallery-title {
+        opacity: 1;
     }

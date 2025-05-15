@@ -86,6 +86,25 @@
         $('body').toggleClass('search-form-on');
     })
 
+    // ------------------------------------------------------------------
+    // Dynamically generate titles and hover captions for gallery images
+    $('.gallery_img').each(function () {
+        var $link = $(this);
+        // Skip title generation for specific categories
+        var $item = $link.closest('.column_single_gallery_item');
+        if ($item.hasClass('affiches') || $item.hasClass('caricatures')) {
+            return; // do not add title or caption
+        }
+        var fileName = $link.attr('href').split('/').pop();          // e.g. "amour_fou_couleur.jpg"
+        var titleText = fileName.replace(/\.[^/.]+$/, '')    // remove extension
+                                .replace(/[_-]+/g, ' ');    // "_" or "-" to space, keep original capitalization
+        $link.attr('title', titleText);                              // light‑box caption
+        if ($link.find('.gallery-title').length === 0) {             // avoid duplicates
+            $link.append('<span class="gallery-title">' + titleText + '</span>');
+        }
+    });
+    // ------------------------------------------------------------------
+
     // Video Active Code
     if ($.fn.magnificPopup) {
         $('.videobtn').magnificPopup({
@@ -98,6 +117,9 @@
         });
         $('.gallery_img').magnificPopup({
             type: 'image',
+            image: {
+                titleSrc: 'title'
+            },
             removalDelay: 300,
             mainClass: 'mfp-fade',
             gallery: {
