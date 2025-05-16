@@ -38,3 +38,18 @@
     .gallery_img:hover .gallery-title {
         opacity: 1;
     }
+    /* --- Long captions in Magnific Popup --- */
+    .mfp-title {
+        white-space: normal;
+        max-width: 700px;
+        margin: 0.5rem auto 0;
+        padding: 0 1rem;
+        line-height: 1.45;
+        text-align: left;
+        color: #fff; /* ensure text is white for readability */
+    }
+    /* Force white text for all elements inside the Magnific Popup title */
+    .mfp-title,
+    .mfp-title * {
+        color: #fff !important;
+    }

@@ -87,15 +87,44 @@
     })
 
     // ------------------------------------------------------------------
+    /* ================================================================
+       Long descriptions for BD items — using template literals so we
+       avoid escaping problems with quotes and apostrophes.
+    ================================================================= */
+    var bdDescriptions = {
+        ellipto: `<h4>Le cercle des elliptocytaires</h4>
+<p>Il s'agit d'une BD de 62 planches qui se déroule dans l'entre‑deux‑guerres, dans un contexte politico‑historique présentant certaines similitudes avec les temps présents (montée de l'extrême droite, danger de guerre mondiale). Le narrateur part à l'aventure au Proche‑Orient, à la recherche de trois ami(e)s : Julia, une apprentie archéologue ; Jean, un cinéaste en mal de producteur ; et Paul, un passionné d'aviation. L'originalité tient au parti pris narratif : l'action se déroule à travers le regard du héros, qui n'apparaît presque jamais à l'image. Pour lire les douze premières pages, rendez‑vous sur ma page « Les amis de la bande dessinée ». Pour l'intégralité, contactez‑moi : roland.dewind@gmail.com.</p>`,
+        trilogie: `<p><strong>Trilogie prévue :</strong> Deux suites compléteront <em>Le cercle des elliptocytaires</em> :</p>
+<ul>
+<li><strong>Smog and Blitz</strong> – le vécu de Jacques durant les bombardements allemands à Londres en 1940‑41.</li>
+<li><strong>Dernière valse à Vienne</strong> marquera le retour de Paul, devenu riche parvenu, au cœur d'une intrigue dans les montagnes carinthiennes en 1949.</li>
+</ul>`
+    };
     // Dynamically generate titles and hover captions for gallery images
     $('.gallery_img').each(function () {
         var $link = $(this);
         // Skip title generation for specific categories
         var $item = $link.closest('.column_single_gallery_item');
+        var fileName = $link.attr('href').split('/').pop(); // ensure fileName is defined early
+        // Skip captions for Affiches & Caricatures
         if ($item.hasClass('affiches') || $item.hasClass('caricatures')) {
-            return; // do not add title or caption
+            return; // no title or caption for these categories
         }
-        var fileName = $link.attr('href').split('/').pop();          // e.g. "amour_fou_couleur.jpg"
+        /* ----------  BD : long description in the light-box ---------- */
+        if ($item.hasClass('bd')) {
+            var desc = '';
+
+            if (/ellipto/i.test(fileName)) {
+                desc = bdDescriptions.ellipto;
+            } else if (/blitz/i.test(fileName) || /derniere-valse/i.test(fileName) || /dernière-valse/i.test(fileName)) {
+                desc = bdDescriptions.trilogie;
+            }
+
+            if (desc) {
+                $link.attr('data-description', desc);
+            }
+            return; // pas de bandeau-titre ni attr title pour BD
+        }
         var titleText = fileName.replace(/\.[^/.]+$/, '')    // remove extension
                                 .replace(/[_-]+/g, ' ');    // "_" or "-" to space, keep original capitalization
         $link.attr('title', titleText);                              // light‑box caption
@@ -118,7 +147,9 @@
         $('.gallery_img').magnificPopup({
             type: 'image',
             image: {
-                titleSrc: 'title'
+                titleSrc: function (item) {
+                    return item.el.data('description') || item.el.attr('title');
+                }
             },
             removalDelay: 300,
             mainClass: 'mfp-fade',
